@@ -1,4 +1,4 @@
-# Node-JS Boilerplate
+# Node-JS
 
 Installation steps to run server locally
 
