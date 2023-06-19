@@ -17,6 +17,12 @@ exports.validateUser = [
 
 
 
+// Login validation
+exports.validateLogin = [
+  check('email', 'Email is required').notEmpty().isEmail().trim().toLowerCase(),
+  check('password', 'Password is required.').notEmpty().trim().isLength({ min: 8 }),
+];
+
 
 /*
 ======================

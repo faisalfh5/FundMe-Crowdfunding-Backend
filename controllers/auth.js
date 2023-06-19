@@ -53,6 +53,12 @@ exports.login = async (req, res) => {
 };
 
 /**
+ * Change Password
+ * @param {object} req
+ * @param {object} res
+ */
+
+/**
  * Confirm auth
  * @param {object} req
  * @param {object} res

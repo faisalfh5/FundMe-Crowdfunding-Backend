@@ -16,6 +16,11 @@ const { validateUser, validateUserUpdate, isValidated } = require('../middleware
 // Create - User Signup
 router.post('/', validateUser, isValidated, users.create);
 
+// Read
+router.get('/', checkAuth, users.getAll); // Get all users at once
+router.get('/:userId', checkAuth, users.getById); // Get one user by it's id
+
+
 
 // Export
 module.exports = router;
