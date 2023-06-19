@@ -1,7 +1,3 @@
-/**
- * Common middleware that we have to use by default every time
- * @author Yousuf Kalim
- */
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');

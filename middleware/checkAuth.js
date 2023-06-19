@@ -5,6 +5,7 @@ const tokenSecret = process.env.JWT_SECRET;
 exports.checkAuth = (req, res, next) => {
   // Get token from Header
   const header = req.get('Authorization');
+  console.log("header", header);
 
   // Check if not token
   if (!header || !header.startsWith('Bearer')) {
@@ -18,7 +19,6 @@ exports.checkAuth = (req, res, next) => {
     // Decrypting token
     const token = header.split(' ')[1];
     const { user } = jwt.verify(token, tokenSecret);
-
     if (!user) {
       return res.status(403).json({
         success: false,

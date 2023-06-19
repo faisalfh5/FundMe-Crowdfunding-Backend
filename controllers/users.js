@@ -11,6 +11,7 @@ const bcryptSalt = process.env.BCRYPT_SALT || 10;
 exports.create = async (req, res) => {
   try {
     let { email, password } = req.body; // Getting required fields from body
+    // console.log("Emsil ", req.body)
     const existingUser = await Users.findOne({ email }); // Finding already existing user
 
     // Extra Validations
@@ -19,10 +20,10 @@ exports.create = async (req, res) => {
       return res.status(409).json({ success: false, message: 'User already exists.' });
     }
 
-    // Getting url of the image
-    if (req.file) {
-      req.body.photo = req.file.path; // Creating a new property called photo in body object
-    }
+    // // Getting url of the image
+    // if (req.file) {
+    //   req.body.photo = req.file.path; // Creating a new property called photo in body object
+    // }
 
     // Creating User
     req.body.password = bcrypt.hashSync(password, parseInt(bcryptSalt)); // Hashing the password with salt 8

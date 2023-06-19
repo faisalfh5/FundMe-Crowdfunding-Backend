@@ -1,10 +1,7 @@
-/**
- * Database connection
- * @author Yousuf Kalim
- */
 const mongoose = require('mongoose');
 const dbUrl = process.env.MONGODB_URI;
 
+console.log("dbUrl is",dbUrl);
 // Setting
 mongoose.set('debug', true);
 
@@ -17,7 +14,7 @@ mongoose
     ignoreUndefined: true,
   })
   // eslint-disable-next-line no-console
-  .then(() => console.log('We are connected with database :)')) //Success
+  .then(() => console.log('We are connected with database :)( ')) //Success
   .catch((err) => {
     // eslint-disable-next-line no-console
     console.log('DB Connection Error :( -------> ', err); //Failed
