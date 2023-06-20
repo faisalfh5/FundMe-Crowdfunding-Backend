@@ -12,7 +12,7 @@ exports.validateUser = [
   check('name', 'Name is required.').notEmpty().trim(),
   check('email', 'Email is required.').notEmpty().isEmail().trim(),
   check('password', 'Password is required.').notEmpty().trim().isLength({ min: 8 }),
-  check('confirm password', 'Password is required.').notEmpty().trim().isLength({ min: 8 }),
+  check('confirmpassword', 'Password is required.').notEmpty().trim().isLength({ min: 8 }),
 ];
 
 // User Signup Validation

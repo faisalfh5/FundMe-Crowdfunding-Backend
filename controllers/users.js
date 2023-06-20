@@ -10,7 +10,7 @@ const bcryptSalt = process.env.BCRYPT_SALT || 10;
 
 exports.create = async (req, res) => {
   try {
-    let { email, password } = req.body; // Getting required fields from body
+    let { email, password , confirmpassword } = req.body; // Getting required fields from body
     // console.log("Emsil ", req.body)
     const existingUser = await Users.findOne({ email }); // Finding already existing user
 
@@ -24,7 +24,10 @@ exports.create = async (req, res) => {
     // if (req.file) {
     //   req.body.photo = req.file.path; // Creating a new property called photo in body object
     // }
+    if ( password !== confirmpassword ) {
+      return res.status(409).json({success: false, message: "Password and Confirm Password are not same"});
 
+    }
     // Creating User
     req.body.password = bcrypt.hashSync(password, parseInt(bcryptSalt)); // Hashing the password with salt 8
     const user = await Users.create(req.body); // Adding user in db
@@ -98,3 +101,20 @@ exports.update = async (req, res) => {
   }
 };
 
+/**
+ * Delete user
+ * @param {object} req
+ * @param {object} res
+ */
+exports.delete = async (req, res) => {
+  try {
+    const userId = req.params.userId; // Getting user id from URL parameter
+    const user = await Users.findByIdAndDelete(userId); // Deleting the user
+    res.json({ success: true, user }); // Success
+  } catch (err) {
+    // Error handling
+    // eslint-disable-next-line no-console
+    console.log('Error ----> ', err);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+};
